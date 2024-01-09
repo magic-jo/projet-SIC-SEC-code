@@ -3,7 +3,7 @@ void setup() {
 }
 
 void loop() {
-  // read the value from the sensor:
+  // read the value from the sensor with voltage
   Serial.print(250);
   Serial.print(", ");
   Serial.print(350);

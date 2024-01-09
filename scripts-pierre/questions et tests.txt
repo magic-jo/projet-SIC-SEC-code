@@ -1,0 +1,33 @@
+QUESTIONS :
+
+- conversion pour le micro de tension vers dB SPL ??
+-> 14V = 1Pa = 94dBa
+donc x Volts donne 20*log( (x/14) / (20*10e-6) ) dBa
+- le calcul précédent ne fonctionne pas j'ai l'impression : car alors 1.5V donne 74dBa et quand je parle ça continue de stagner autour de 75dB.
+De plus, les dBa chutent parfois car suivent la forme de l'onde --> problème
+- changer les pins pour le SPI ? (je ne peux sélectionner que CS mais pas les autres)
+-> non car hardware, utiliser ceux de base
+
+TESTS ET TODO :
+- écriture / lecture SD card
+- calcul du IAQ avec les bonnes bibliothèques
+-> IAQ n'est pas défini de manière standard. Une piste pour le calculer à la main ici : https://github.com/G6EJD/BME680-Example
+- intégrer les différents codes
+- regarder la taille des bibliothèques par rapport aux 32kb de l'atmega328. Il va falloir épurer
+
+CODE :
+- mesures
+-> son - toute les 30s, on mesure pendant 5s et on moyenne.
+-> temp - toute les 1m
+-> présence - pas de sens de regarder toutes les x secondes, c'est un évènement
+-> qualité air - toute les 1m
+
+- librairies en générales ? sont-elles seulement utilisées lors de la compilation ou sont-elles importées sur la carte ?
+-> Compilées et mises sur la carte
+- moins de place quand compilées ?
+- fonctions de bases de arduino ?
+-> même histoire : compilées et importées
+
+
+
+
