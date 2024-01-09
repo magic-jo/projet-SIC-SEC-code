@@ -1,0 +1,3 @@
+- conversion pour le micro de tension vers dB SPL ??
+- changer les pins pour le SPI ? (je ne peux sélectionner que CS mais pas les autres)
+-> pas grave de pas changer, mais question sur le branchement de MISO sur le kicad
