@@ -9,10 +9,16 @@ De plus, les dBa chutent parfois car suivent la forme de l'onde --> problème
 -> non car hardware, utiliser ceux de base
 
 TESTS ET TODO :
-- écriture / lecture SD card
-- calcul du IAQ avec les bonnes bibliothèques
+- calcul du IAQ avec les bonnes bibliothèques ? 
 -> IAQ n'est pas défini de manière standard. Une piste pour le calculer à la main ici : https://github.com/G6EJD/BME680-Example
-- intégrer les différents codes
+-> manière propres de le calculer sont coûteuses en mémoire et calcul et Atmega328p pas équipée pour ça
+- intégrer les différents codes :
+.LED pour les différents tests
+.fichier logs pour la carte SD
+.temps flottants pour calculer les écarts et en secondes (en millis c'est grand pour rien)
+.reset le temps tout les x pour pouvoir laisser le capteur longtemps sans avoir une explosion des variables qui comptent le temps ?
+.finir la formule pour les dB
+.est-ce qu'on fait une moyenne des valeurs sur genre une minute
 - regarder la taille des bibliothèques par rapport aux 32kb de l'atmega328. Il va falloir épurer
 
 CODE :
@@ -27,6 +33,13 @@ CODE :
 - moins de place quand compilées ?
 - fonctions de bases de arduino ?
 -> même histoire : compilées et importées
+
+LIBRAIRIES :
+BME : DFRobot_BME680_I2C.h ->
+Sd : 
+Motion : 0
+Mic : 0
+
 
 
 

@@ -20,12 +20,14 @@ void setup() {
   //ECRITURE
 
   //Ouvre fichier
-  myFile = SD.open("test.txt", FILE_WRITE);
+  myFile = SD.open("test.csv", FILE_WRITE | O_TRUNC);
 
   //Si pas d'erreur, on écrit dedans
   if (myFile) {
-    Serial.println("Ouverture fichier");
-    myFile.println("Mot 1. Mot 2.");
+    Serial.println("Ecriture...");
+    myFile.println("Temperature, humidité");
+    myFile.println("15, 0.6");
+    myFile.println("23, 0.4");
     //Ferme le fichier
     myFile.close();
   }
@@ -38,11 +40,11 @@ void setup() {
   //LECTURE
 
   //Ouvre fichier
-  myFile = SD.open("test.txt");
+  myFile = SD.open("test.csv");
 
   //Si pas d'erreur
   if (myFile) {
-    Serial.println("test.txt:");
+    Serial.println("Voici le contenu du csv :");
 
     //lit tant qu'il y a des données
     while (myFile.available()) {
