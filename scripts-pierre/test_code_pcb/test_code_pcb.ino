@@ -3,6 +3,7 @@
 #include <SD.h>
 
 const int CS = 4;
+const int LED = 3;
 
 File myFile;
 
@@ -17,21 +18,30 @@ void setup() {
   }
   Serial.println("Init réussie");
 
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
+
   //ECRITURE
 
   //Ouvre fichier
-  myFile = SD.open("test_pcb.csv", FILE_WRITE | O_TRUNC);
+  myFile = SD.open("test_pcb.txt", FILE_WRITE);
 
   //Si pas d'erreur, on écrit dedans
   if (myFile) {
     Serial.println("ça marche !!!");
     //Ferme le fichier
     myFile.close();
+    digitalWrite(LED, HIGH);
+    delay(1000);
+    digitalWrite(LED, LOW);
   }
   //Si erreur d'ouverture
   else {
     // if the file didn't open, print an error:
     Serial.println("Erreur ouverture fichier");
+    digitalWrite(LED, HIGH);
+    delay(5000);
+    digitalWrite(LED, LOW);
   }
   
 }
