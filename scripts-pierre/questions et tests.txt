@@ -13,13 +13,15 @@ TESTS ET TODO :
 -> IAQ n'est pas défini de manière standard. Une piste pour le calculer à la main ici : https://github.com/G6EJD/BME680-Example
 -> manière propres de le calculer sont coûteuses en mémoire et calcul et Atmega328p pas équipée pour ça
 - intégrer les différents codes :
-.LED pour les différents tests
-.fichier logs pour la carte SD
 .temps flottants pour calculer les écarts et en secondes (en millis c'est grand pour rien)
+-> en fait millis c'est depuis l'exec du programme
 .reset le temps tout les x pour pouvoir laisser le capteur longtemps sans avoir une explosion des variables qui comptent le temps ?
 .finir la formule pour les dB
-.est-ce qu'on fait une moyenne des valeurs sur genre une minute
+-> moyenner les dB
 - regarder la taille des bibliothèques par rapport aux 32kb de l'atmega328. Il va falloir épurer
+-> ça a l'air de passer
+- open et close le fichier à chaque fois -> possibilité de flush() mais rien de sûr ?
+- avoir la date en format normal et pas secondes avec les mesures
 
 CODE :
 - mesures
