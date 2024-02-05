@@ -32,30 +32,48 @@ File myFile;
 //Pin sur lequel on lit le volume sonore
 #define mic A0
 
+//DEBUG
+int LED = 3;
+
 //------------------------------------------------------//
 
 //INITIALISATION
 void setup()
 {
+  //GENERAL
+  //Lance la comm port série. Inutile pour le code final.
+  Serial.begin(9600);
+  //DEBUG
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
   //BME
+  
   //Variable pour tester l'initialisation du BME
   uint8_t rslt = 1;
   while(rslt != 0) {
     rslt = bme.begin();
     if(rslt != 0) {
       Serial.println("Init BME NON");
-      delay(2000);
+      blinkWrong();
+      //Force le passage
+      rslt = 0;
     }
   }
-  Serial.println("Init BME OUI");
 
+  Serial.println("Init BME OUI");
+  blinkRight();
+  
   //SD
   //Essaye d'initialiser le SPI avec la carte SD au port CS
   if (!SD.begin(CS)) {
     Serial.print("Init SD NON");
-    while (true);
+    blinkWrong();
+  }
+  else {
+    blinkRight();
   }
   Serial.println("Init SD OUI");
+  
 
   //MOTION
   //Initialise le pin de réception 
@@ -128,6 +146,7 @@ void loop()
   */
 
   //POUR TEST
+  
 
   //Enregistre les données
   //BME
@@ -144,6 +163,10 @@ void loop()
     }
   //MIC
   int brute = analogRead(A0);
+
+
+  //DEBUG
+  blinkRight();
   
   //------------------------------------------------------//
 
@@ -161,10 +184,10 @@ void loop()
     myFile.close();
   }
   */
-  
+
   //POUR TEST
   //Ouvre fichier, en écrasant son contenu précédent (enlever | O_TRUNC pour écrire à la suite)
-  myFile = SD.open("test_pcb_capteur.txt", FILE_WRITE);
+  myFile = SD.open("capteur.txt", FILE_WRITE);
   if (myFile) {
     //Écriture de valeurs
     //BME
@@ -181,8 +204,12 @@ void loop()
     //MIC
     myFile.println("Son : ");
     myFile.println(brute);
+
+    myFile.println("------");
     
     myFile.close();
+
+    blinkWrong();
   }
 
   //Attend 1 seconde pour voir
@@ -205,6 +232,38 @@ int isPeopleDetected()
   }
 }
 
+//Fonctions pour debugs
+void blinkRight() {
+  delay(1000);
+  digitalWrite(LED, HIGH);
+  delay(500);
+  digitalWrite(LED, LOW);
+  delay(500);
+  digitalWrite(LED, HIGH);
+  delay(500);
+  digitalWrite(LED, LOW);
+  delay(500);
+}
+
+void blinkWrong() {
+  delay(1000);
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(100);
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(100);
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(100);
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(100);
+}
 
 
 

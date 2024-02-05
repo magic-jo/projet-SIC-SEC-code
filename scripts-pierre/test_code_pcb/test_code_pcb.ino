@@ -28,12 +28,13 @@ void setup() {
 
   //Si pas d'erreur, on écrit dedans
   if (myFile) {
-    Serial.println("ça marche !!!");
+    myFile.println("ça marche !!!");
     //Ferme le fichier
     myFile.close();
     digitalWrite(LED, HIGH);
     delay(1000);
     digitalWrite(LED, LOW);
+    delay(1000);
   }
   //Si erreur d'ouverture
   else {

@@ -1,0 +1,21 @@
+upload_normal arduinoisp
+branchement SPI
+tools->programmer->arduino as isp
+upload_using_prog "code"
+OK
+
+
+
+
+bleu rouge alim
+
+atmega : 1 = droite coté ext du demi sercles
+15 = opposé
+
+10 - 1
+11 - 17
+12 - 18
+13 - 19
+
+
+W - R  // R si bme - W si ecriture

@@ -32,11 +32,20 @@ File myFile;
 //Pin sur lequel on lit le volume sonore
 #define mic A0
 
+//DEBUG
+int LED = 3;
+
 //------------------------------------------------------//
 
 //INITIALISATION
 void setup()
 {
+  //GENERAL
+  //Lance la comm port série. Inutile pour le code final.
+  Serial.begin(9600);
+  //DEBUG
+  pinMode(LED, OUTPUT);
+  digitalWrite(LED, LOW);
   //BME
   //Variable pour tester l'initialisation du BME
   uint8_t rslt = 1;
@@ -44,17 +53,19 @@ void setup()
     rslt = bme.begin();
     if(rslt != 0) {
       Serial.println("Init BME NON");
-      delay(2000);
+      blinkWrong();
     }
   }
   Serial.println("Init BME OUI");
+  blinkRight();
 
   //SD
   //Essaye d'initialiser le SPI avec la carte SD au port CS
   if (!SD.begin(CS)) {
     Serial.print("Init SD NON");
-    while (true);
+    blinkWrong();
   }
+  blinkRight();
   Serial.println("Init SD OUI");
 
   //MOTION
@@ -205,6 +216,36 @@ int isPeopleDetected()
   }
 }
 
+//Fonctions pour debugs
+void blinkRight() {
+  digitalWrite(LED, HIGH);
+  delay(500);
+  digitalWrite(LED, LOW);
+  delay(500);
+  digitalWrite(LED, HIGH);
+  delay(500);
+  digitalWrite(LED, LOW);
+  delay(500);
+}
+
+void blinkWrong() {
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(100);
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(100);
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(100);
+  digitalWrite(LED, HIGH);
+  delay(100);
+  digitalWrite(LED, LOW);
+  delay(100);
+}
 
 
 

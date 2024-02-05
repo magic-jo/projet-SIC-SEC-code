@@ -2,7 +2,7 @@
 
 #include <SD.h>
 
-const int CS = 10;
+const int CS = 4;
 
 File myFile;
 
@@ -24,10 +24,7 @@ void setup() {
 
   //Si pas d'erreur, on écrit dedans
   if (myFile) {
-    Serial.println("Ecriture...");
-    myFile.println("Temperature, humidité");
-    myFile.println("15, 0.6");
-    myFile.println("23, 0.4");
+    myFile.println("atmega+led");
     //Ferme le fichier
     myFile.close();
   }
